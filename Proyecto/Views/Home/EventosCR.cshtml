@@ -1,0 +1,35 @@
+﻿@model List<Evento>
+
+<h2>Eventos Disponibles</h2>
+
+<form asp-controller="Home" asp-action="PantallaInicio" method="get">
+    <label for="tipo">Filtrar por tipo:</label>
+    <select name="tipo" id="tipo">
+        <option value="">Todos</option>
+        <option value="Deporte">Deporte</option>
+        <option value="Concierto">Concierto</option>
+        <option value="Teatro">Teatro</option>
+    </select>
+    <button type="submit">Filtrar</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var evento in Model)
+        {
+            <tr>
+                <td>@evento.Nombre</td>
+                <td>@evento.Tipo</td>
+                <td><a asp-controller="Eventos" asp-action="Detalle" asp-route-id="@evento.Id">Ver detalles</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
